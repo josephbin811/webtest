@@ -44,19 +44,10 @@
 
     
     var wxRedirectCode = document.getElementById('firebaseDbCode');
-    var dbRef = firebase.database().ref().child('work_wx_code');
+
+    var database = firebase.database(); 
+    var dbRef = database.ref().child('work_wx_code');
     dbRef.on('value', snap => wxRedirectCode.innerText = snap.val());
-
-
     </script>
-
-
-
   </body>
-
- 
-
-
-
-
 </html>
