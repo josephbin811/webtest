@@ -7,6 +7,7 @@
   
   <body>    
     <h1>The Redirect URL 帶回來的參數: <p id="locationSearch"></p></h1>
+    <h1>Firebase 設定參數: <p id="firebaseDbCode"></p></h1>
 
     <script type="text/javascript">
         if(location.search !== null && location.search !== undefined) {
@@ -14,5 +15,48 @@
         }  
     </script>
 
+     
+    <!-- Firebase 初始化 -->
+
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyBl-Nr1w58R-Lm536yWK5TkhEIErQC5gqI",
+        authDomain: "web-demo-454b6.firebaseapp.com",
+        databaseURL: "https://web-demo-454b6.firebaseio.com",
+        projectId: "web-demo-454b6",
+        storageBucket: "web-demo-454b6.appspot.com",
+        messagingSenderId: "202506264765",
+        appId: "1:202506264765:web:0e2593094634409924d7d4",
+        measurementId: "G-H1QPYSZW63"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    
+    var wxRedirectCode = document.getElementById('firebaseDbCode');
+    var dbRef = firebase.database().ref().child('work_wx_code');
+    dbRef.on('value', snap => wxRedirectCode.innerText = snap.val());
+
+
+    </script>
+
+
+
   </body>
+
+ 
+
+
+
+
 </html>
