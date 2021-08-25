@@ -24,7 +24,7 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
-    
+
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <script>
@@ -40,16 +40,26 @@
         appId: "1:202506264765:web:0e2593094634409924d7d4",
         measurementId: "G-H1QPYSZW63"
     };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
 
     
-    var wxRedirectCode = document.getElementById('firebaseDbCode');
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();      
 
+    
+    
+    //write
+    var updates = {};
+    updates['/work_wx_code'] = location.search;  
+    firebase.database().ref().update(updates);
+
+    //read
+    var wxRedirectCode = document.getElementById('firebaseDbCode');
     var database = firebase.database(); 
     var dbRef = database.ref().child('work_wx_code');
     dbRef.on('value', snap => wxRedirectCode.innerText = snap.val());
+
+
     </script>
   </body>
 </html>
