@@ -13,6 +13,8 @@
         
         var redirectParas = '';
         var code = '';
+
+        //location.search = '?code=12345678&state=';
        
         if(location.search !== null && location.search !== undefined) {
             document.getElementById("locationSearch").innerHTML=location.search;
@@ -22,15 +24,24 @@
                 (redirectParas.indexOf('&') > redirectParas.indexOf('=')) ) {
 
                   code = redirectParas.substring(redirectParas.indexOf('=') + 1,redirectParas.indexOf('&')) ;
-
+                  document.getElementById("wechat_verify_code").innerHTML = code;
             }
-        } 
+
+            if(code !== undefined && code !== null && code !== '') {
+              ajaxCallWeChatAPIAndGetUser(code);
+              
+            }
+        }
+        
+        function ajaxCallWeChatAPIAndGetUser(code) {
+          console.log('call ajaxCallWeChatAPIAndGetUser:' + code);
+        }
        
         // document.getElementById("locationSearch").innerHTML = '?code=12345678&state=';
         // redirectParas = '?code=12345678&state=';        
         
 
-        document.getElementById("wechat_verify_code").innerHTML = code;
+        
 
     </script>
 
