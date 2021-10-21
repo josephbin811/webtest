@@ -7,11 +7,31 @@
   
   <body>    
     <h1>The Redirect URL 帶回來的參數: <p id="locationSearch"></p></h1>
+    <h2>解析出來的code: <p id="wechat_verify_code"></p></h1>
 
     <script type="text/javascript">
+        
+        var redirectParas = '';
+        var code = '';
+       
         if(location.search !== null && location.search !== undefined) {
             document.getElementById("locationSearch").innerHTML=location.search;
-        }  
+            redirectParas =location.search;
+
+            if(redirectParas.indexOf('=') !== -1 &&  redirectParas.indexOf('&') !== -1 && 
+                (redirectParas.indexOf('&') > redirectParas.indexOf('=')) ) {
+
+                  code = redirectParas.substring(redirectParas.indexOf('=') + 1,redirectParas.indexOf('&')) ;
+
+            }
+        } 
+       
+        // document.getElementById("locationSearch").innerHTML = '?code=12345678&state=';
+        // redirectParas = '?code=12345678&state=';        
+        
+
+        document.getElementById("wechat_verify_code").innerHTML = code;
+
     </script>
 
    
