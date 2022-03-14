@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Inputs</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  
+  <body>        
+    <input type="button" name="Submit" value="測試Call API" class="btn" onclick="ajaxCall()" /> 
+
+    <script type="text/javascript">
+            
+            
+        
+
+        function ajaxCall() {
+          //alert('call ajaxCall');
+
+          var data = JSON.stringify(123);
+
+          var config = {
+          method: 'post',
+          url: 'https://web.wonderlandchina.com/csrc' +  '/api/Values',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          data : data
+          };
+          
+
+          var step;
+          for (step = 0; step < 5; step++) {
+              axios(config)
+                .then(function (response) {
+                  console.log(JSON.stringify(response.data));
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+          }         
+
+        }
+
+    </script>
+
+   
+  </body>
+</html>
